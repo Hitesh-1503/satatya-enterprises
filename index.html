@@ -129,6 +129,7 @@
     grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
     padding-bottom:24px;
   }
+  .grid[hidden]{display:none}   /* must override .grid's display:grid so the toggle actually swaps */
   .card{
     background:var(--card);border:1px solid #EEE4CC;border-radius:var(--radius);
     overflow:hidden;display:flex;flex-direction:column;
