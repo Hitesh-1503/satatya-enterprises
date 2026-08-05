@@ -34,6 +34,14 @@
     color:var(--soil);
     line-height:1.6;
   }
+  /* ---------- Farm watermark (fixed, behind all content) ---------- */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:
+      linear-gradient(rgba(253,250,242,.60), rgba(253,250,242,.60)),
+      url("images/background.jpg") center/cover no-repeat;
+  }
   h1,h2,h3,.brand{font-family:'Baloo 2',sans-serif}
 
   /* ---------- Header ---------- */
@@ -85,7 +93,7 @@
   .hero{
     background:
       radial-gradient(ellipse 90% 120% at 85% -10%, rgba(217,145,24,.22), transparent 55%),
-      linear-gradient(180deg,#FFF9EA 0%,var(--paper) 100%);
+      linear-gradient(180deg,rgba(255,249,234,.74) 0%,rgba(253,250,242,.70) 100%);
     border-bottom:1px solid #EFE6CE;
   }
   .hero-inner{
@@ -208,6 +216,94 @@
     text-align:center;padding:22px 20px;font-size:.9rem;
   }
   footer strong{color:#F2E7D4}
+
+  /* ---------- Interactivity add-ons ---------- */
+  /* keep section headings legible over the stronger watermark */
+  .section-head .tag,.section-head h2,.section-head p{text-shadow:0 1px 3px rgba(253,250,242,.75)}
+
+  /* search / filter */
+  .tools{max-width:1100px;margin:0 auto 26px;display:flex;justify-content:center;padding:0 20px}
+  .search-wrap{position:relative;width:min(460px,100%)}
+  .search-ic{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:.95rem;opacity:.65;pointer-events:none}
+  .search{
+    width:100%;font-family:'Karla',sans-serif;font-size:1rem;color:var(--soil);
+    padding:12px 18px 12px 42px;border:1.5px solid #E6D6AE;border-radius:999px;
+    background:rgba(255,255,255,.92);box-shadow:0 2px 10px rgba(59,46,30,.07);
+    transition:border-color .2s,box-shadow .2s;
+  }
+  .search::placeholder{color:#B7A987}
+  .search:focus{outline:none;border-color:var(--haldi);box-shadow:0 0 0 3px rgba(217,145,24,.2)}
+  .empty{text-align:center;color:var(--soil-soft);font-style:italic;padding:6px 20px 34px}
+
+  /* tab count badge */
+  .count{display:inline-block;min-width:20px;padding:0 6px;margin-left:5px;border-radius:999px;
+    background:rgba(255,255,255,.22);font-size:.74rem;line-height:1.55;font-weight:700}
+  .toggle button.active .count{background:rgba(59,42,5,.2)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* card tile is now a button (opens modal) */
+  .card-tile{border:0;width:100%;padding:0;cursor:pointer;color:inherit;font-family:inherit}
+  .card-tile:focus-visible{outline:3px solid var(--haldi);outline-offset:-3px}
+  .zoom-hint{
+    position:absolute;bottom:10px;right:10px;z-index:2;
+    background:rgba(31,66,31,.82);color:#fff;font-size:.72rem;font-weight:700;
+    padding:4px 10px;border-radius:999px;opacity:0;transform:translateY(4px);
+    transition:opacity .2s,transform .2s;pointer-events:none;
+  }
+  .card:hover .zoom-hint,.card-tile:focus-visible .zoom-hint{opacity:1;transform:none}
+  .card.selected{border-color:var(--haldi);box-shadow:0 0 0 2px var(--haldi) inset,0 10px 24px rgba(217,145,24,.2)}
+  .card[hidden]{display:none}
+
+  /* card action row (checkbox + WhatsApp) */
+  .card-actions{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+  .card-body .enquire{padding-top:0;margin-top:0}
+  .pick{display:inline-flex;align-items:center;gap:6px;font-size:.82rem;color:var(--soil-soft);cursor:pointer;user-select:none}
+  .pick input{width:16px;height:16px;accent-color:var(--leaf);cursor:pointer}
+
+  /* product modal */
+  .pmodal{border:0;border-radius:18px;padding:0;max-width:520px;width:92%;background:var(--card);
+    color:var(--soil);box-shadow:0 24px 70px rgba(0,0,0,.42)}
+  .pmodal::backdrop{background:rgba(31,42,15,.55);backdrop-filter:blur(2px)}
+  .m-card{position:relative;display:flex;flex-direction:column;overflow:hidden;border-radius:18px}
+  .m-close{position:absolute;top:10px;right:10px;z-index:3;border:0;cursor:pointer;width:34px;height:34px;
+    border-radius:50%;background:rgba(255,255,255,.92);font-size:1rem;color:var(--soil);box-shadow:0 2px 8px rgba(0,0,0,.22)}
+  .m-close:hover{background:#fff}
+  .m-img{position:relative;height:240px;display:flex;align-items:center;justify-content:center;font-size:78px}
+  .m-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .m-body{padding:22px 24px 26px}
+  .m-body h3{font-size:1.4rem;color:var(--leaf-deep);margin-bottom:2px}
+  .m-mr{color:var(--soil-soft);font-size:1rem;margin-bottom:10px}
+  .m-desc{color:var(--soil);font-style:italic;margin-bottom:18px}
+  .m-wa{width:100%;justify-content:center}
+
+  /* floating multi-select enquiry bar */
+  .enquiry-bar{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:60;
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;
+    background:var(--leaf-deep);color:#fff;border:1px solid rgba(255,255,255,.15);
+    padding:12px 18px;border-radius:14px;box-shadow:0 12px 34px rgba(0,0,0,.34);width:min(620px,92%);
+  }
+  .enq-info{font-size:.95rem}
+  .enq-info strong{color:var(--haldi);font-family:'Baloo 2';font-size:1.15rem}
+  .enq-actions{display:flex;gap:10px;align-items:center;margin-left:auto}
+  .enq-clear{background:transparent;border:1px solid rgba(255,255,255,.4);color:#EAF2E6;border-radius:999px;
+    padding:8px 14px;cursor:pointer;font-family:'Baloo 2';font-weight:700;font-size:.85rem}
+  .enq-clear:hover{background:rgba(255,255,255,.12)}
+  .enquiry-bar .btn{padding:10px 18px;font-size:.92rem}
+
+  /* back to top */
+  .to-top{
+    position:fixed;right:18px;bottom:18px;z-index:55;width:46px;height:46px;border-radius:50%;border:0;cursor:pointer;
+    background:var(--haldi);color:#3B2A05;font-size:1.3rem;font-weight:700;box-shadow:0 6px 18px rgba(217,145,24,.42);
+    opacity:0;transform:translateY(10px) scale(.9);transition:opacity .25s,transform .25s;pointer-events:none;
+  }
+  .to-top.show{opacity:1;transform:none;pointer-events:auto}
+  .to-top:hover{transform:translateY(-2px)}
+  @media(max-width:520px){.to-top{right:12px;bottom:82px}.enquiry-bar{bottom:12px}}
 </style>
 </head>
 <body>
@@ -248,17 +344,24 @@
 </div>
 
 <section id="products">
-  <div class="section-head">
+  <div class="section-head reveal">
     <div class="tag" id="prod-tag">ताजे · Just Harvested</div>
     <h2 id="prod-title">Farm Fresh Produce</h2>
     <p id="prod-sub">Picked at peak ripeness and rushed straight from our fields — vibrant, aromatic and full of natural life.</p>
   </div>
+  <div class="tools">
+    <div class="search-wrap">
+      <span class="search-ic" aria-hidden="true">🔍</span>
+      <input id="search" class="search" type="search" placeholder="Search products…  हळद · ginger · mint" aria-label="Search products" oninput="applySearch()" autocomplete="off">
+    </div>
+  </div>
   <div class="grid" id="grid-fresh"></div>
   <div class="grid" id="grid-value" hidden></div>
+  <p class="empty" id="empty" hidden>No products match your search — try another term.</p>
 </section>
 
 <div class="about-strip" id="about">
-  <div class="about-inner">
+  <div class="about-inner reveal">
     <div>
       <h2>Why <span>Satatya</span>?</h2>
       <p>"सातत्य" means consistency — and consistency is the whole promise. We own every step from seed to shelf, so what reaches you is exactly what left the field: honest, whole and unchanged.</p>
@@ -277,7 +380,7 @@
 </div>
 
 <section class="contact" id="contact">
-  <div class="contact-card">
+  <div class="contact-card reveal">
     <h2>Let's talk</h2>
     <p>Orders, pricing, or a bulk enquiry — we're just a call or a message away.</p>
     <div class="contact-lines">
@@ -292,6 +395,31 @@
   <strong>SATATYA ENTERPRISES · सातत्य एंटरप्रायजेस</strong><br>
   © 2026 Satatya Enterprises · Grown, dried &amp; delivered with सातत्य.
 </footer>
+
+<!-- product detail modal -->
+<dialog class="pmodal" id="pmodal" aria-label="Product details">
+  <div class="m-card">
+    <button class="m-close" type="button" onclick="closeModal()" aria-label="Close">✕</button>
+    <div class="m-img"></div>
+    <div class="m-body">
+      <h3 class="m-title"></h3>
+      <div class="m-mr"></div>
+      <p class="m-desc"></p>
+      <a class="btn btn-gold m-wa" href="#" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+    </div>
+  </div>
+</dialog>
+
+<!-- floating multi-select enquiry bar -->
+<div class="enquiry-bar" id="enqbar" hidden>
+  <span class="enq-info"><strong id="enqcount">0</strong> selected for enquiry</span>
+  <div class="enq-actions">
+    <button type="button" class="enq-clear" onclick="clearPicks()">Clear</button>
+    <a class="btn btn-primary" id="enqlink" href="#" target="_blank" rel="noopener">Send WhatsApp enquiry →</a>
+  </div>
+</div>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top">↑</button>
 
 <script>
   const WA = "918485881501";
@@ -322,24 +450,113 @@
 
   function card(p){
     const msg = encodeURIComponent(`Hello Satatya Enterprises, I would like to enquire about: ${p.n}`);
-    return `<article class="card">
-      <div class="card-tile ${p.t}">
+    const hay = (p.n + " " + p.mr + " " + p.d).toLowerCase().replace(/"/g,"");
+    return `<article class="card reveal" data-key="${p.img}" data-name="${hay}">
+      <button class="card-tile ${p.t}" type="button" onclick="openModal('${p.img}')" aria-label="View details for ${p.n}">
         <span class="emoji" aria-hidden="true">${p.e}</span>
         <img class="prod-img" src="images/${p.img}.jpg" alt="${p.n}" loading="lazy" onerror="this.remove()">
-      </div>
+        <span class="zoom-hint" aria-hidden="true">View ⤢</span>
+      </button>
       <div class="card-body">
         <h3>${p.n}</h3>
         <div class="mr">${p.mr}</div>
         <div class="desc">${p.d}</div>
-        <a class="enquire" href="https://wa.me/${WA}?text=${msg}" target="_blank" rel="noopener">
-          ${WA_SVG}
-          Enquire on WhatsApp
-        </a>
+        <div class="card-actions">
+          <label class="pick"><input type="checkbox" data-key="${p.img}" onchange="togglePick('${p.img}',this.checked)"> Add to enquiry</label>
+          <a class="enquire" href="https://wa.me/${WA}?text=${msg}" target="_blank" rel="noopener">${WA_SVG}<span>WhatsApp</span></a>
+        </div>
       </div>
     </article>`;
   }
-  document.getElementById("grid-fresh").innerHTML = fresh.map(card).join("");
-  document.getElementById("grid-value").innerHTML = value.map(card).join("");
+  const gridFresh = document.getElementById("grid-fresh");
+  const gridValue = document.getElementById("grid-value");
+  gridFresh.innerHTML = fresh.map(card).join("");
+  gridValue.innerHTML = value.map(card).join("");
+
+  const all = [...fresh, ...value];
+  const findP = k => all.find(p => p.img === k);
+  let currentCat = "fresh";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* product counts on the toggle tabs */
+  document.getElementById("tab-fresh").innerHTML = '🌿 Farm Fresh <span class="count">' + fresh.length + '</span>';
+  document.getElementById("tab-value").innerHTML = '☀️ Value Added <span class="count">' + value.length + '</span>';
+
+  /* ---- live search / filter (English + Marathi) ---- */
+  const search = document.getElementById("search");
+  const empty  = document.getElementById("empty");
+  function applySearch(){
+    const q = search.value.trim().toLowerCase();
+    const grid = currentCat === "fresh" ? gridFresh : gridValue;
+    let shown = 0;
+    grid.querySelectorAll(".card").forEach(c => {
+      const m = !q || c.dataset.name.includes(q);
+      c.hidden = !m; if (m) shown++;
+    });
+    empty.hidden = shown !== 0;
+  }
+
+  /* ---- reveal cards/sections on scroll ---- */
+  function armReveal(){
+    const els = document.querySelectorAll(".reveal:not(.in)");
+    if (reduce || !("IntersectionObserver" in window)) { els.forEach(e => e.classList.add("in")); return; }
+    const io = new IntersectionObserver((ents, o) => {
+      ents.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); o.unobserve(e.target); } });
+    }, {threshold:.1, rootMargin:"0px 0px -40px 0px"});
+    els.forEach(e => io.observe(e));
+  }
+
+  /* ---- product detail modal ---- */
+  const modal = document.getElementById("pmodal");
+  function openModal(k){
+    const p = findP(k); if (!p) return;
+    const img = modal.querySelector(".m-img");
+    img.className = "m-img " + p.t;
+    img.innerHTML = '<span class="m-emoji" aria-hidden="true">' + p.e + '</span>' +
+      '<img src="images/' + p.img + '.jpg" alt="' + p.n + '" onerror="this.remove()">';
+    modal.querySelector(".m-title").textContent = p.n;
+    modal.querySelector(".m-mr").textContent    = p.mr;
+    modal.querySelector(".m-desc").textContent  = p.d;
+    const msg = encodeURIComponent("Hello Satatya Enterprises, I would like to enquire about: " + p.n);
+    modal.querySelector(".m-wa").href = "https://wa.me/" + WA + "?text=" + msg;
+    if (modal.showModal) modal.showModal(); else modal.setAttribute("open", "");
+  }
+  function closeModal(){ if (modal.close) modal.close(); else modal.removeAttribute("open"); }
+  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+
+  /* ---- multi-select enquiry (one WhatsApp message for many items) ---- */
+  const selected = new Map();
+  const enqbar   = document.getElementById("enqbar");
+  const enqcount = document.getElementById("enqcount");
+  const enqlink  = document.getElementById("enqlink");
+  function togglePick(k, on){
+    const p = findP(k); if (!p) return;
+    on ? selected.set(k, p) : selected.delete(k);
+    document.querySelectorAll('.card[data-key="' + k + '"]').forEach(c => c.classList.toggle("selected", on));
+    document.querySelectorAll('input[data-key="' + k + '"]').forEach(cb => cb.checked = on);
+    renderBar();
+  }
+  function renderBar(){
+    const n = selected.size;
+    enqbar.hidden = n === 0;
+    enqcount.textContent = n;
+    const names = [...selected.values()].map(p => p.n + " (" + p.mr + ")");
+    const msg = encodeURIComponent(
+      "Hello Satatya Enterprises, I would like to enquire about these " + n + " product(s):\n\n- " +
+      names.join("\n- ") + "\n\nPlease share pricing and availability.");
+    enqlink.href = "https://wa.me/" + WA + "?text=" + msg;
+  }
+  function clearPicks(){
+    selected.clear();
+    document.querySelectorAll(".card.selected").forEach(c => c.classList.remove("selected"));
+    document.querySelectorAll(".pick input:checked").forEach(cb => cb.checked = false);
+    renderBar();
+  }
+
+  /* ---- back to top ---- */
+  const toTop = document.getElementById("toTop");
+  addEventListener("scroll", () => toTop.classList.toggle("show", scrollY > 600), {passive:true});
+  toTop.addEventListener("click", () => scrollTo({top:0, behavior: reduce ? "auto" : "smooth"}));
 
   /* ---- category toggle (Farm Fresh / Value Added) ---- */
   const CAT = {
@@ -349,9 +566,10 @@
            sub:"Sun- and air-dehydrated to lock in colour, aroma and nutrition — long shelf life, zero additives."}
   };
   function showCat(cat){
+    currentCat = cat;
     const isFresh = cat === "fresh";
-    document.getElementById("grid-fresh").hidden = !isFresh;
-    document.getElementById("grid-value").hidden =  isFresh;
+    gridFresh.hidden = !isFresh;
+    gridValue.hidden =  isFresh;
     const tf = document.getElementById("tab-fresh"), tv = document.getElementById("tab-value");
     tf.classList.toggle("active", isFresh);  tf.setAttribute("aria-selected", isFresh);
     tv.classList.toggle("active", !isFresh); tv.setAttribute("aria-selected", !isFresh);
@@ -359,8 +577,15 @@
     document.getElementById("prod-tag").textContent   = c.tag;
     document.getElementById("prod-title").textContent = c.title;
     document.getElementById("prod-sub").textContent   = c.sub;
-    document.getElementById("products").scrollIntoView({behavior:"smooth", block:"start"});
+    applySearch();
+    armReveal();
+    document.getElementById("products").scrollIntoView({behavior: reduce ? "auto" : "smooth", block:"start"});
   }
+
+  /* ---- init ---- */
+  renderBar();
+  applySearch();
+  armReveal();
 </script>
 
 </body>
