@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Satatya Enterprises – Farm Fresh & Dehydrated Products</title>
-<meta name="description" content="Satatya Enterprises – farm fresh turmeric, ginger, moringa, lemon, banana & more, plus naturally dehydrated value-added products. Grown, dried & delivered with Satatya. Enquire on WhatsApp.">
+<meta name="description" content="Satatya Enterprises – farm fresh turmeric, ginger, moringa, lemon, banana & more, plus aseptically dehydrated value-added products. Grown, dried & delivered with Satatya. Enquire on WhatsApp.">
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,6 +66,21 @@
   }
   .brand-name{font-weight:800;font-size:1.2rem;line-height:1.12}
   .brand-name span{display:block;font-weight:600;font-size:.78rem;color:#F4D48A;letter-spacing:.02em}
+  /* modern animated brand wordmark */
+  .brand-name{display:flex;flex-direction:column;line-height:1.05}
+  .brand-name .wordmark{
+    font-family:'Baloo 2',sans-serif;font-weight:800;font-size:1.34rem;letter-spacing:.045em;
+    background:linear-gradient(100deg,#F4D48A 0%,#FFF6DE 22%,#E7A72B 48%,#FFF6DE 74%,#F4D48A 100%);
+    background-size:220% auto;-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+    transition:background-position .7s ease;
+  }
+  .brand:hover .wordmark,.brand:focus-visible .wordmark{background-position:right center}
+  .brand-name .tagline{
+    font-weight:600;font-size:.72rem;color:#EBD9A6;letter-spacing:.16em;text-transform:uppercase;margin-top:3px;
+  }
+  .brand-mark{transition:transform .3s ease}
+  .brand:hover .brand-mark{transform:rotate(-5deg) scale(1.06)}
 
   /* segmented toggle */
   .toggle{
@@ -314,7 +329,7 @@
     <div class="brand-cluster">
       <a class="brand" href="#top">
         <img class="brand-mark" src="assets/logo.png" alt="Satatya Enterprises logo — sprout, sun and wheat">
-        <div class="brand-name">SATATYA ENTERPRISES<span>Farm Fresh &amp; Naturally Dehydrated</span></div>
+        <div class="brand-name"><span class="wordmark">SATATYA ENTERPRISES</span><span class="tagline">Farm Fresh &amp; Dehydrated</span></div>
       </a>
       <div class="toggle" role="tablist" aria-label="Product category">
         <button id="tab-fresh" class="active" role="tab" aria-selected="true" aria-controls="grid-fresh" onclick="showCat('fresh')">🌿 Farm Fresh</button>
@@ -333,7 +348,7 @@
     <span class="eyebrow">शेतातून थेट तुमच्यापर्यंत · Farm to Table</span>
     <h1>Grown in good soil.<br><em>Preserved with Satatya.</em></h1>
     <div class="marathi">ताजा शेतमाल आणि निसर्गतः वाळवलेली दर्जेदार उत्पादने</div>
-    <p class="lede">Turmeric, ginger, moringa, mint and more — sourced fresh from the farm, harvested at their peak, and naturally dehydrated in small batches. From farm to shelf, the goodness never changes.</p>
+    <p class="lede">Turmeric, ginger, moringa, mint and more — sourced fresh from the farm, harvested at their peak, and aseptically dehydrated in small batches. From farm to shelf, the goodness never changes.</p>
     <div class="pillars" aria-label="Our values">
       <span><strong>विश्वास</strong> Trust</span>
       <span class="sep" aria-hidden="true">·</span>
@@ -368,14 +383,14 @@
       <p>"Satatya" means consistency — and consistency is the whole promise. We watch over every step from farm to shelf, so what reaches you is exactly what left the field: honest, whole and unchanged.</p>
       <ul class="about-points">
         <li>Farm to shelf, handled with care — one standard, every single batch.</li>
-        <li>Naturally sun- and air-dehydrated — no artificial colours, no preservatives.</li>
+        <li>Aseptically dehydrated — no artificial colours, no preservatives.</li>
         <li>Fresh or dried, retail or wholesale — the same honest quality, always.</li>
         <li>Bulk, wholesale &amp; export enquiries warmly welcomed.</li>
       </ul>
     </div>
     <div class="about-card">
       <div class="big">शेतातून थेट तुमच्यापर्यंत</div>
-      <p>From the farm, straight to you — with Satatya (consistency) in every single batch.</p>
+      <p>From the Farm, Straight to You — with Satatya (consistency) in quality and service for every single batch.</p>
     </div>
   </div>
 </div>
@@ -445,7 +460,7 @@
     {n:"Dehydrated Mint Leaves",    mr:"सुकवलेला पुदिना",       e:"🌱", t:"t-leaf",   img:"mint-dry",        d:"Aroma locked in, ready for chai."},
     {n:"Dehydrated Curry Leaves",   mr:"सुकवलेला कढीपत्ता",     e:"🍃", t:"t-leaf",   img:"curry-dry",       d:"Shelf-stable, full aroma retained."},
     {n:"Dehydrated Lemon Flakes",   mr:"लिंबू फ्लेक्स",          e:"🍋", t:"t-lemon",  img:"lemon-dry",       d:"Zesty tang, anytime."},
-    {n:"Dehydrated Green Chilli",   mr:"सुकवलेली हिरवी मिरची",  e:"🌶️", t:"t-chilli", img:"chilli-dry",      d:"Bold heat, naturally dried."},
+    {n:"Dehydrated Green Chilli",   mr:"सुकवलेली हिरवी मिरची",  e:"🌶️", t:"t-chilli", img:"chilli-dry",      d:"Bold heat, aseptically dried."},
     {n:"Banana Powder",             mr:"केळी पावडर",           e:"🍌", t:"t-banana", img:"banana-powder",   d:"Wholesome banana goodness, dried."}
   ];
 
@@ -563,8 +578,8 @@
   const CAT = {
     fresh:{tag:"ताजे · Just Harvested",  title:"Farm Fresh Produce",
            sub:"Picked at peak ripeness and rushed straight from the farm — vibrant, aromatic and full of natural life."},
-    value:{tag:"टिकाऊ · Naturally Dried", title:"Value-Added Products",
-           sub:"Sun- and air-dehydrated to lock in colour, aroma and nutrition — long shelf life, zero additives."}
+    value:{tag:"टिकाऊ · Aseptically Dried", title:"Value-Added Products",
+           sub:"Aseptically dehydrated to lock in colour, aroma and nutrition — long shelf life, zero additives."}
   };
   function showCat(cat){
     currentCat = cat;
