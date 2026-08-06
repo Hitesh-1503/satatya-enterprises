@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Satatya Enterprises – Farm Fresh & Dehydrated Products | सातत्य एंटरप्रायजेस</title>
-<meta name="description" content="Satatya Enterprises – farm fresh turmeric, ginger, moringa, lemon, banana & more, plus naturally dehydrated value-added products. Grown, dried & delivered with सातत्य. Enquire on WhatsApp.">
+<title>Satatya Enterprises – Farm Fresh & Dehydrated Products</title>
+<meta name="description" content="Satatya Enterprises – farm fresh turmeric, ginger, moringa, lemon, banana & more, plus naturally dehydrated value-added products. Grown, dried & delivered with Satatya. Enquire on WhatsApp.">
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,7 @@
     --radius:14px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
+  [hidden]{display:none!important}   /* ensure toggled-off grid actually hides */
   html{scroll-behavior:smooth}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
@@ -313,7 +314,7 @@
     <div class="brand-cluster">
       <a class="brand" href="#top">
         <img class="brand-mark" src="assets/logo.png" alt="Satatya Enterprises logo — sprout, sun and wheat">
-        <div class="brand-name">SATATYA ENTERPRISES<span>सातत्य एंटरप्रायजेस</span></div>
+        <div class="brand-name">SATATYA ENTERPRISES<span>Farm Fresh &amp; Naturally Dehydrated</span></div>
       </a>
       <div class="toggle" role="tablist" aria-label="Product category">
         <button id="tab-fresh" class="active" role="tab" aria-selected="true" aria-controls="grid-fresh" onclick="showCat('fresh')">🌿 Farm Fresh</button>
@@ -330,9 +331,9 @@
 <div class="hero" id="top">
   <div class="hero-inner">
     <span class="eyebrow">शेतातून थेट तुमच्यापर्यंत · Farm to Table</span>
-    <h1>Grown in good soil.<br><em>Preserved with सातत्य.</em></h1>
+    <h1>Grown in good soil.<br><em>Preserved with Satatya.</em></h1>
     <div class="marathi">ताजा शेतमाल आणि निसर्गतः वाळवलेली दर्जेदार उत्पादने</div>
-    <p class="lede">Turmeric, ginger, moringa, mint and more — grown on our own fields, harvested at their peak, and naturally dehydrated in small batches. From soil to shelf, the goodness never changes.</p>
+    <p class="lede">Turmeric, ginger, moringa, mint and more — sourced fresh from the farm, harvested at their peak, and naturally dehydrated in small batches. From farm to shelf, the goodness never changes.</p>
     <div class="pillars" aria-label="Our values">
       <span><strong>विश्वास</strong> Trust</span>
       <span class="sep" aria-hidden="true">·</span>
@@ -347,7 +348,7 @@
   <div class="section-head reveal">
     <div class="tag" id="prod-tag">ताजे · Just Harvested</div>
     <h2 id="prod-title">Farm Fresh Produce</h2>
-    <p id="prod-sub">Picked at peak ripeness and rushed straight from our fields — vibrant, aromatic and full of natural life.</p>
+    <p id="prod-sub">Picked at peak ripeness and rushed straight from the farm — vibrant, aromatic and full of natural life.</p>
   </div>
   <div class="tools">
     <div class="search-wrap">
@@ -364,9 +365,9 @@
   <div class="about-inner reveal">
     <div>
       <h2>Why <span>Satatya</span>?</h2>
-      <p>"सातत्य" means consistency — and consistency is the whole promise. We own every step from seed to shelf, so what reaches you is exactly what left the field: honest, whole and unchanged.</p>
+      <p>"Satatya" means consistency — and consistency is the whole promise. We watch over every step from farm to shelf, so what reaches you is exactly what left the field: honest, whole and unchanged.</p>
       <ul class="about-points">
-        <li>Seed to shelf, handled by our own hands — one standard, every single batch.</li>
+        <li>Farm to shelf, handled with care — one standard, every single batch.</li>
         <li>Naturally sun- and air-dehydrated — no artificial colours, no preservatives.</li>
         <li>Fresh or dried, retail or wholesale — the same honest quality, always.</li>
         <li>Bulk, wholesale &amp; export enquiries warmly welcomed.</li>
@@ -374,7 +375,7 @@
     </div>
     <div class="about-card">
       <div class="big">शेतातून थेट तुमच्यापर्यंत</div>
-      <p>From our farm, straight to you — with सातत्य (consistency) in every single batch.</p>
+      <p>From the farm, straight to you — with Satatya (consistency) in every single batch.</p>
     </div>
   </div>
 </div>
@@ -392,8 +393,8 @@
 </section>
 
 <footer>
-  <strong>SATATYA ENTERPRISES · सातत्य एंटरप्रायजेस</strong><br>
-  © 2026 Satatya Enterprises · Grown, dried &amp; delivered with सातत्य.
+  <strong>SATATYA ENTERPRISES</strong><br>
+  © 2026 Satatya Enterprises · Grown, dried &amp; delivered with Satatya.
 </footer>
 
 <!-- product detail modal -->
@@ -561,7 +562,7 @@
   /* ---- category toggle (Farm Fresh / Value Added) ---- */
   const CAT = {
     fresh:{tag:"ताजे · Just Harvested",  title:"Farm Fresh Produce",
-           sub:"Picked at peak ripeness and rushed straight from our fields — vibrant, aromatic and full of natural life."},
+           sub:"Picked at peak ripeness and rushed straight from the farm — vibrant, aromatic and full of natural life."},
     value:{tag:"टिकाऊ · Naturally Dried", title:"Value-Added Products",
            sub:"Sun- and air-dehydrated to lock in colour, aroma and nutrition — long shelf life, zero additives."}
   };
